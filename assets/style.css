@@ -1,0 +1,117 @@
+/* Global Reset & Base Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background-color: #fdfaf6;
+  color: #333;
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+/* Header */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0;
+  background-color: #fff8f0;
+  border-bottom: 1px solid #e0dcd5;
+}
+
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #6b4f3b;
+  font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #fff0f5;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.hero h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero button {
+  background-color: #d8a7b1;
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  margin: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Palette Section */
+.palettes {
+  margin: 2rem 0;
+}
+
+.palette-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.palette {
+  text-align: center;
+}
+
+.palette img {
+  width: 180px;
+  border-radius: 6px;
+}
+
+/* How It Works */
+.how-it-works ol {
+  margin: 1rem 2rem;
+  padding-left: 1rem;
+}
+
+.how-it-works li {
+  margin-bottom: 0.5rem;
+}
+
+/* Quotes Section */
+.quotes {
+  text-align: center;
+  margin: 2rem 0;
+  font-style: italic;
+}
+
+.quotes button {
+  margin-top: 1rem;
+  background-color: #c5d1d8;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: #6b6b6b;
+  border-top: 1px solid #e0e0e0;
+}
