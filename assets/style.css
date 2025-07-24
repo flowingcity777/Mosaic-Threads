@@ -1,52 +1,61 @@
-/* Base Style */
-body {
-  font-family: 'Georgia', serif;
-  background-color: #121212; /* Dark but not harsh */
-  color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-/* Hero Image */
-.hero {
-  background: url('assets/bike-1245889_1920.jpg') center/cover no-repeat;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #ffffff;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  font-weight: normal;
-  background-color: rgba(18, 18, 18, 0.6); /* Soft overlay */
-  padding: 1rem 2rem;
-  border-radius: 6px;
-}
-
-/* Content Section */
-section {
-  padding: 2rem 5%;
-  line-height: 1.6;
-}
-
-/* Captions, Quotes, Poetic Text */
-.poetic-text {
-  font-style: italic;
-  color: #ccc;
-  margin: 1rem 0;
-}
-
-/* Responsive Adjustments */
-@media screen and (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-    padding: 0.5rem 1rem;
-  }
-
-  section {
-    padding: 1.5rem 4%;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform any image into a soulful stitch pattern</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Transform any image<br>Into a soulful stitch pattern</h1>
+        
+        <div class="upload-section">
+            <div class="upload-options">
+                <button class="btn btn-primary">Upload an Image</button>
+                <button class="btn btn-outline">Browse Templates</button>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <div class="palette-section">
+            <h2>Palette Inspirations</h2>
+            <div class="palette-grid">
+                <div class="palette-card">
+                    <div class="palette-name">Rose Garden</div>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-name">Earthbound Harmony</div>
+                </div>
+                <div class="palette-card">
+                    <div class="palette-name">Morning Prayer</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>1. Upload or select an image</h3>
+                    <p>Choose your favorite photo or select from our templates.</p>
+                </div>
+                <div class="step">
+                    <h3>2. Enter your yarn gauge</h3>
+                    <p>Specify your preferred yarn weight for accurate pattern sizing.</p>
+                </div>
+                <div class="step">
+                    <h3>3. Select or customize your color palette</h3>
+                    <p>Use our suggestions or create your own color scheme.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="quotes">
+            <div class="quote">"Each stitch a prayer, each row a revelation."</div>
+            <div class="quote">"May your threads carry peace and quiet joy."</div>
+        </div>
+    </div>
+</body>
+</html>
