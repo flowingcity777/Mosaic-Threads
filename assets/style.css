@@ -1,117 +1,52 @@
-/* Global Reset & Base Styling */
-* {
+/* Base Style */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #121212; /* Dark but not harsh */
+  color: #f4f4f4;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-body {
-  font-family: 'Quicksand', sans-serif;
-  background-color: #fdfaf6;
-  color: #333;
-  line-height: 1.6;
-  padding: 1rem;
-}
-
-/* Header */
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5rem 0;
-  background-color: #fff8f0;
-  border-bottom: 1px solid #e0dcd5;
-}
-
-nav ul {
-  display: flex;
-  gap: 1rem;
-  list-style: none;
-  margin-top: 0.5rem;
-}
-
-nav a {
-  text-decoration: none;
-  color: #6b4f3b;
-  font-weight: bold;
-}
-
-/* Hero Section */
+/* Hero Image */
 .hero {
-  text-align: center;
-  padding: 2rem 1rem;
-  background-color: #fff0f5;
-  border-radius: 8px;
-  margin: 2rem 0;
-}
-
-.hero h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-}
-
-.hero button {
-  background-color: #d8a7b1;
-  border: none;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  margin: 0.5rem;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* Palette Section */
-.palettes {
-  margin: 2rem 0;
-}
-
-.palette-grid {
+  background: url('assets/bike-1245889_1920.jpg') center/cover no-repeat;
+  height: 90vh;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.palette {
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: #ffffff;
 }
 
-.palette img {
-  width: 180px;
+.hero h1 {
+  font-size: 3rem;
+  font-weight: normal;
+  background-color: rgba(18, 18, 18, 0.6); /* Soft overlay */
+  padding: 1rem 2rem;
   border-radius: 6px;
 }
 
-/* How It Works */
-.how-it-works ol {
-  margin: 1rem 2rem;
-  padding-left: 1rem;
+/* Content Section */
+section {
+  padding: 2rem 5%;
+  line-height: 1.6;
 }
 
-.how-it-works li {
-  margin-bottom: 0.5rem;
-}
-
-/* Quotes Section */
-.quotes {
-  text-align: center;
-  margin: 2rem 0;
+/* Captions, Quotes, Poetic Text */
+.poetic-text {
   font-style: italic;
+  color: #ccc;
+  margin: 1rem 0;
 }
 
-.quotes button {
-  margin-top: 1rem;
-  background-color: #c5d1d8;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-}
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+  }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 3rem;
-  padding: 1rem 0;
-  font-size: 0.9rem;
-  color: #6b6b6b;
-  border-top: 1px solid #e0e0e0;
+  section {
+    padding: 1.5rem 4%;
+  }
 }
