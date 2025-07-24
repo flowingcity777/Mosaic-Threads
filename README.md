@@ -1,14 +1,14 @@
 # Knitting Pattern Generator 🧶✨
-### Transform any image into a customizable knitting pattern!
-### Perfect for knitters who want to create unique projects from photos, artwork, or designs.
+## Transform any image into a customizable knitting pattern!
+## Perfect for knitters who want to create unique projects from photos, artwork, or designs.
 
-### How to Use This Site
-#### 1. Upload Your Image
+## **How to Use This Site**
+**1. Upload Your Image**
 Click "Upload an Image" to select a photo from your device.
 
 Supported formats: JPG, PNG, GIF.
 
-#### 2. Choose a Yarn Palette
+**2. Choose a Yarn Palette**
 Pick from curated color palettes or use your image’s original colors:
 Pick from curated color palettes or use your image’s original colors:
 
@@ -22,14 +22,14 @@ Ocean Depths (Cool blues/teals)
 
 Forest Floor (Muted greens)
 
-#### 3. Adjust Settings
+**3. Adjust Settings**
 Yarn Weight: Select your yarn thickness (Lace to Bulky).
 
 Stitches per Inch: Adjust for desired pattern density.
 
 Grid Size: Toggle stitch visibility and block size.
 
-#### 4. Generate & Download
+**4. Generate & Download**
 Click "Generate Pattern" to create your knitting chart.
 
 Download Options:
@@ -46,10 +46,10 @@ Set stitches to 5 per inch.
 Generate → Download the PDF to start knitting!
 
 #### Features
-✅ Custom Color Matching – Adapts images to yarn colors.
-✅ Adjustable Grid – Visualize stitches clearly.
-✅ Written Instructions – Row-by-row stitch counts.
-✅ Mobile-Friendly – Works on phones and tablets.
+✅ Custom Color Matching – Adapts images to yarn colors. <br>
+✅ Adjustable Grid – Visualize stitches clearly. <br>
+✅ Written Instructions – Row-by-row stitch counts. <br>
+✅ Mobile-Friendly – Works on phones and tablets. <br>
 
 #### Tips for Best Results
 Use high-contrast images for clearer patterns.
@@ -71,14 +71,3 @@ Troubleshooting: Ensure JavaScript is enabled in your browser.
 Feedback: Share pattern results with us!
 
 Happy Knitting! ❤️
-
-#### For Developers:
-
-knitting-pattern-generator/
-├── index.html
-├── script.js          # Main functionality
-├── styles.css         # Styling
-├── assets/            # Images/fonts (optional)
-
-
-PDF Instructions (Written row-by-row guide)
