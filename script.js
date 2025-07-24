@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const downloadBtn = document.getElementById('downloadPattern');
     const paletteGrid = document.getElementById('paletteGrid');
     const instructionsContent = document.getElementById('instructionsContent');
+    const downloadPDFBtn = document.getElementById('downloadPDF');
     
     // Yarn Color Palettes (Name + Hex Colors)
     const yarnPalettes = {
@@ -164,7 +165,35 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.readAsDataURL(file);
         }
     });
+
+    //Generate PDF file
+    function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Title
+    doc.setFontSize(20);
+    doc.setTextColor(140, 106, 86); // Yarn color
+    doc.text('Knitting Pattern Instructions', 105, 20, { align: 'center' });
     
+    // Palette info
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    doc.text(`Yarn Palette: ${activePalette}`, 14, 30);
+    
+    // Instructions
+    const instructions = instructionsContent.textContent;
+    doc.setFont('courier'); // Monospace for pattern
+    doc.setFontSize(10);
+    doc.text(instructions, 14, 40, { maxWidth: 180 });
+    
+    // Save
+    doc.save(`knitting-pattern-${new Date().getTime()}.pdf`);
+}
+    
+// Add event listener
+downloadPDFBtn.addEventListener('click', generatePDF);
+        
     // Generate pattern button
     generatePatternBtn.addEventListener('click', function() {
         if (!uploadedImage) return;
