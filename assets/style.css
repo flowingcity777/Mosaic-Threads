@@ -77,6 +77,16 @@ h3 { text-align: left; margin-top: 0; }
 
 .btn-primary:hover { background-color: #6d5241; }
 
+/* Download PDF */
+#downloadPDF {
+    margin-left: 1rem;
+    background-color: white;
+}
+
+#downloadPDF:hover {
+    background-color: #f0e6d2;
+}
+
 /* Palette Grid */
 .palette-grid {
     display: grid;
