@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mosaic Threads</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Knitting Pattern</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Mosaic Threads</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Create Pattern</a></li>
-        <li><a href="#">Yarn Palettes</a></li>
-        <li><a href="#">Prayerful Stitching</a></li>
-        <li><a href="#">About & Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <h2>Transform any image into a soulful stitch pattern.</h2>
-    <button>Upload an Image</button>
-    <button>Browse Templates</button>
-  </section>
-
-  <section class="palettes">
-    <h3>Palette Inspirations</h3>
-    <div class="palette-grid">
-      <div class="palette">
-        <p>Rose Garden</p>
-        <img src="rose-garden.jpg" alt="Rose palette sample">
-      </div>
-      <div class="palette">
-        <p>Earthbound Harmony</p>
-        <img src="earthbound.jpg" alt="Earth tones palette">
-      </div>
-      <div class="palette">
-        <p>Morning Prayer</p>
-        <img src="morning-prayer.jpg" alt="Soft blues palette">
-      </div>
+    <div class="container">
+        <h1>Transform any image<br>Into a soulful stitch pattern</h1>
+        
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+            <button onclick="document.getElementById('imageUpload').click()" class="btn btn-primary">
+                Upload an Image
+            </button>
+            
+            <!-- Pattern Controls -->
+            <div class="pattern-controls" id="patternControls" style="display: none;">
+                <div class="control-group">
+                    <label for="yarnWeight">Yarn Weight:</label>
+                    <select id="yarnWeight">
+                        <option value="lace">Lace</option>
+                        <option value="fingering">Fingering</option>
+                        <option value="worsted" selected>Worsted</option>
+                        <option value="bulky">Bulky</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="stitchSize">Stitches per inch:</label>
+                    <input type="number" id="stitchSize" value="5" min="3" max="10">
+                </div>
+                
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="showGrid" checked> 
+                        Show stitch grid
+                    </label>
+                </div>
+                
+                <div class="control-group">
+                    <label for="gridSize">Stitches per block:</label>
+                    <input type="number" id="gridSize" value="5" min="1" max="20">
+                </div>
+                
+                <button id="generatePattern" class="btn btn-primary">Generate Pattern</button>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <!-- Palette Inspirations -->
+        <div class="palette-section">
+            <h2>Yarn Color Palettes</h2>
+            <div class="palette-grid" id="paletteGrid"></div>
+        </div>
+        
+        <!-- Pattern Preview -->
+        <div class="pattern-preview" id="patternPreview" style="display: none;">
+            <h2>Your Knitting Pattern</h2>
+            <canvas id="patternCanvas"></canvas>
+            <button id="downloadPattern" class="btn btn-primary">Download Pattern</button>
+            
+            <!-- Knitting Instructions -->
+            <div class="pattern-instructions">
+                <h3>Instructions</h3>
+                <div class="instructions-content" id="instructionsContent"></div>
+            </div>
+        </div>
+        
+        <!-- Quotes -->
+        <div class="quotes">
+            <div class="quote">"Each stitch a prayer, each row a revelation."</div>
+            <div class="quote">"May your threads carry peace and quiet joy."</div>
+        </div>
     </div>
-  </section>
-
-  <section class="how-it-works">
-    <h3>How It Works</h3>
-    <ol>
-      <li>Upload or select an image</li>
-      <li>Enter your yarn gauge</li>
-      <li>Select or customize your color palette</li>
-      <li>Receive your pattern and start stitching</li>
-    </ol>
-  </section>
-
-  <section class="quotes">
-    <blockquote>“Each stitch a prayer, each row a revelation.”</blockquote>
-    <blockquote>“May your threads carry peace and quiet joy.”</blockquote>
-    <button>Bless This Project</button>
-  </section>
-
-  <footer>
-    <p>Created by gentle hands & guided algorithms</p>
-    <p><a href="#">Newsletter Signup</a></p>
-  </footer>
+    
+    <script src="script.js"></script>
 </body>
 </html>
