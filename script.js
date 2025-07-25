@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Yarn Color Palettes (Name + Hex Colors)
     const yarnPalettes = {
-        "Rose Garden": ["#f8d5d5", "#e6a8a8", "#d48a8a", "#a15e5e", "#6e3b3b"],
-        "Earthbound Harmony": ["#d4c8b0", "#a89f84", "#7d755d", "#5a5340", "#3a3526"],
-        "Morning Prayer": ["#f0e6d2", "#d8c9a3", "#b8a57a", "#8a794f", "#5d4e30"],
-        "Ocean Depths": ["#d2e3f0", "#a3c4d8", "#7a9eb8", "#4f718a", "#30495d"],
-        "Forest Floor": ["#d5e8d5", "#a8c9a8", "#7da57d", "#5e7a5e", "#3b4e3b"]
+      "Rose Garden": ["#f8d5d5", "#e6a8a8", "#d48a8a", "#a15e5e", "#6e3b3b"],
+      "Ocean Blues": ["#d2e3f0", "#a3c4d8", "#7a9eb8", "#4f718a", "#30495d"],
+      "Forest Greens": ["#d5e8d5", "#a8c9a8", "#7da57d", "#5e7a5e", "#3b4e3b"],
+      "Earth Tones": ["#d4c8b0", "#a89f84", "#7d755d", "#5a5340", "#3a3526"],
+      "Sunset Glow": ["#f0e6d2", "#d8c9a3", "#b8a57a", "#8a794f", "#5d4e30"]
     };
     
     let uploadedImage = null;
@@ -25,30 +25,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Palette Grid
     function initPalettes() {
         paletteGrid.innerHTML = '';
-        Object.entries(yarnPalettes).forEach(([name, colors]) => {
-            const card = document.createElement('div');
-            card.className = 'palette-card';
-            card.dataset.palette = name;
-            
-            card.innerHTML = `
-                <div class="palette-swatches">
-                    ${colors.map(color => `<div style="background: ${color}; flex: 1;"></div>`).join('')}
-                </div>
-                <div class="palette-name">${name}</div>
-            `;
-            
-            card.addEventListener('click', () => {
-                document.querySelectorAll('.palette-card').forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-                activePalette = name;
-            });
-            
-            paletteGrid.appendChild(card);
-        });
-        
-        // Activate first palette by default
-        document.querySelector('.palette-card').classList.add('active');
-    }
+
+        // Generate cards for each palette
+        Object.entries(yarnPalettes).forEach(([paletteName, colors]) => {
+        // Create card element
+        const card = document.createElement('div');
+        card.className = 'palette-card';
+        card.dataset.palette = paletteName;
+    
+        // Build inner HTML (swatches + name)
+        card.innerHTML = `
+         <div class="palette-swatches">
+        ${colors.map(color => `
+          <div 
+            style="background: ${color};" 
+            title="${color.toUpperCase()}"
+          ></div>
+        `).join('')}
+      </div>
+      <div class="palette-name">${paletteName}</div>
+    `;
+
+    // Add click handler for selection
+    card.addEventListener('click', () => {
+      // Remove active class from all cards
+      document.querySelectorAll('.palette-card').forEach(c => {
+        c.classList.remove('active');
+      });
+      
+      // Mark this card as active
+      card.classList.add('active');
+      
+      // Update global active palette
+      activePalette = paletteName;
+      
+      // Optional: Trigger a preview update
+      if (uploadedImage) updatePatternPreview(); 
+    });
+
+    // Add to DOM
+    paletteGrid.appendChild(card);
+  });
+
+  // Activate first palette by default
+  document.querySelector('.palette-card')?.classList.add('active');
+}
     
     // Find closest yarn color (simple RGB distance)
     function findClosestYarnColor(pixel, palette) {
