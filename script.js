@@ -1,3 +1,12 @@
+// script.js
+import { auth, db } from "./firebase.js";  // Import from firebase.js
+
+// Example: Sign up a user
+auth.createUserWithEmailAndPassword(email, password)
+  .then((userCredential) => {
+    console.log("User created:", userCredential.user.uid);
+  });
+
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const imageUpload = document.getElementById('imageUpload');
