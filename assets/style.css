@@ -45,6 +45,15 @@ h3 { text-align: left; margin-top: 0; }
   text-align: center;  /* Redundant if .quotes is already centered, but adds clarity */
 }
 
+.site-footer {
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  color: #5a4a42; /* Match your theme */
+  font-size: 0.9rem;
+  border-top: 1px solid #d9d2c9; /* Subtle line */
+}
+
 /* Upload Section */
 .upload-section {
     display: flex;
