@@ -71,3 +71,6 @@ Troubleshooting: Ensure JavaScript is enabled in your browser.
 Feedback: Share pattern results with us!
 
 Happy Knitting! ❤️
+
+## ⚠️ No License  
+This project is unlicensed. All rights reserved. 
