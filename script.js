@@ -9,7 +9,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const paletteGrid = document.getElementById('paletteGrid');
     const instructionsContent = document.getElementById('instructionsContent');
     const downloadPDFBtn = document.getElementById('downloadPDF');
-    
+    // Auth Elements
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const signupBtn = document.getElementById('signupBtn');
+    const loginBtn = document.getElementById('loginBtn');
+
+    // Sign Up (Free Forever)
+    signupBtn.addEventListener('click', () => {
+      const email = emailInput.value;
+      const password = passwordInput.value;
+  
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          alert("Welcome! Your account is ready.");
+        })
+        .catch((error) => {
+          alert("Oops: " + error.message); // e.g., "Weak password"
+        });
+    });
+
     // Yarn Color Palettes (Name + Hex Colors)
     const yarnPalettes = {
       "Rose Garden": ["#f8d5d5", "#e6a8a8", "#d48a8a", "#a15e5e", "#6e3b3b"],
@@ -274,6 +293,22 @@ downloadPDFBtn.addEventListener('click', generatePDF);
     
     // Initialize
     initPalettes();
+});
+
+// Log In
+loginBtn.addEventListener('click', () => {
+  firebase.auth().signInWithEmailAndPassword(emailInput.value, passwordInput.value)
+    .catch((error) => {
+      alert("Error: " + error.message);
+    });
+});
+
+// Listen for Auth State (Save Patterns)
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("User logged in:", user.uid);
+    // Save patterns to user’s account here later!
+  }
 });
 
 // Update copyright year automatically
