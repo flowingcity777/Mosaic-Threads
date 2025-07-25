@@ -313,3 +313,13 @@ firebase.auth().onAuthStateChanged((user) => {
 
 // Update copyright year automatically
 document.getElementById('current-year').textContent = new Date().getFullYear();
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can only access their own patterns
+    match /patterns/{patternId} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid == resource.data.userId;
+    }
+  }
+}
