@@ -70,6 +70,9 @@ Troubleshooting: Ensure JavaScript is enabled in your browser.
 
 Feedback: Share pattern results with us!
 
+#### **Live Page**
+**https://flowingcity777.github.io/Mosaic-Threads/**
+
 Happy Knitting! ❤️
 
 ## 📜 Copyright Notice  
