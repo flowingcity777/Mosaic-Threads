@@ -10,6 +10,7 @@ body {
 
 .container {
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 2rem;
 }
@@ -32,7 +33,12 @@ h3 { text-align: left; margin-top: 0; }
   color: #8c6a56;
 }
 
+/* Debug-only rule (remove later) */
+.quotes.debug {  /* or just .quotes */
+  border: 2px solid red;
+}
 /* Explicitly center individual quote lines (optional) */
+
 .quote {
   display: block;      /* Ensures each quote takes full width */
   margin-bottom: 1.5rem;
