@@ -72,5 +72,6 @@ Feedback: Share pattern results with us!
 
 Happy Knitting! ❤️
 
-## ⚠️ No License  
-This project is unlicensed. All rights reserved. 
+## 📜 Copyright Notice  
+© [Lydia Li/2025]. All rights reserved.  
+**Unauthorized use, modification, or distribution is prohibited.** 
