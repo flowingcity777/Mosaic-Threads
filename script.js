@@ -275,3 +275,6 @@ downloadPDFBtn.addEventListener('click', generatePDF);
     // Initialize
     initPalettes();
 });
+
+// Update copyright year automatically
+document.getElementById('current-year').textContent = new Date().getFullYear();
