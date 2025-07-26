@@ -12,6 +12,15 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    <script type="module">
+      import { uploadPatternFile } from "./appwrite.js";
+  
+      function uploadFile() {
+        const fileInput = document.getElementById('patternUpload');
+        uploadPatternFile(fileInput.files[0]);
+      }
+    </script>
+
 
     <!-- Your Firebase Config -->
         <script>
@@ -94,6 +103,8 @@
           <h3>Save Your Patterns Forever</h3>
           <input type="email" id="email" placeholder="Email">
           <input type="password" id="password" placeholder="Password">
+          <input type="file" id="patternUpload" accept="image/*">
+          <button onclick="uploadFile()">Upload Pattern</button>
           <button id="signupBtn" class="btn">Sign Up (Free)</button>
           <button id="loginBtn" class="btn btn-outline">Log In</button>
           <p class="auth-note">No tricks, no fees—just your knitting history, safe and sound.</p>
