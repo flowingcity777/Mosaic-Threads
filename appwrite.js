@@ -1,23 +1,12 @@
-import { Client, Account, Databases, Storage } from "appwrite";
+// appwrite.js
+import { Client, Account, Storage, Databases } from 'appwrite';
 
 const client = new Client()
-  .setEndpoint('https://cloud.appwrite.io/v1')
-  .setProject('mosaic-threads-app');
+  .setEndpoint('https://cloud.appwrite.io/v1') // Your Appwrite endpoint
+  .setProject('YOUR_PROJECT_ID'); // Replace with your Project ID
 
-export const account = new Account(client);
-export const databases = new Databases(client);
-export const storage = new Storage(client);
+const account = new Account(client);
+const storage = new Storage(client);
+const databases = new Databases(client);
 
-export async function uploadPatternFile(file, bucketId = 'pattern_uploads') {
-  try {
-    const response = await storage.createFile(bucketId, 'unique()', file);
-    return response.$id;
-  } catch (error) {
-    // User-friendly alerts + re-throw for UI handling
-    const message = error.message.includes('permission') 
-      ? "You don’t have upload permissions. Please log in."
-      : `Upload failed: ${error.message}`;
-    alert(message); // Or toast.error(message) if using React
-    throw error; 
-  }
-}
+export { account, storage, databases };
