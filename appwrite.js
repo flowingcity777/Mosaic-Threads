@@ -4,7 +4,7 @@ import { Client, Account, Databases, Storage } from "appwrite";
 // 1. Initialize Client
 const client = new Client()
   .setEndpoint('https://cloud.appwrite.io/v1')
-  .setProject('YOUR_PROJECT_ID'); // ← Replace with your ID!
+  .setProject('mosaic-threads-app'); // ← Replace with your ID!
 
 // 2. Export Core Services
 export const account = new Account(client);
