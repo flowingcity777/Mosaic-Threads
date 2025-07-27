@@ -1,17 +1,27 @@
-import { Storage } from "appwrite";
+// appwrite.js
+import { Client, Account, Databases, Storage } from "appwrite";
 
-const storage = new Storage(client); // Initialize with your `client`
+// 1. Initialize Client
+const client = new Client()
+  .setEndpoint('https://cloud.appwrite.io/v1')
+  .setProject('YOUR_PROJECT_ID'); // ← Replace with your ID!
 
-// Upload a user's pattern image
-async function uploadPatternFile(file) {
+// 2. Export Core Services
+export const account = new Account(client);
+export const databases = new Databases(client);
+export const storage = new Storage(client);
+
+// 3. Export Frequently Used Functions (Optional)
+export async function uploadPatternFile(file, bucketId = 'pattern_uploads') {
   try {
     const response = await storage.createFile(
-      'pattern_uploads', // Bucket ID
-      'unique()',        // Auto-generate file ID
-      file               // HTML file input (e.g., from <input type="file">)
+      bucketId,
+      'unique()',
+      file
     );
-    console.log("Uploaded!", response.$id);
+    return response.$id; // Return file ID for linking to user data
   } catch (error) {
     console.error("Upload failed:", error);
+    throw error; // Re-throw for handling in UI
   }
 }
