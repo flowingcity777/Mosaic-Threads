@@ -9,7 +9,12 @@ export async function linkPatternToUser(userId, fileId, title, colors) {
       colors
     });
     console.log("Pattern linked to user!");
+    return true; // Success flag
   } catch (error) {
-    console.error("Linking failed:", error);
+    const message = error.code === 409 
+      ? "This pattern already exists in your library!"
+      : `Failed to save pattern: ${error.message}`;
+    alert(message);
+    return false; // Failure flag
   }
 }
