@@ -1,7 +1,7 @@
 // userData.js
 import { storage, databases } from './appwrite.js';
 
-const BUCKET_ID = 'YOUR_BUCKET_ID'; // Create in Appwrite Storage
+const BUCKET_ID = 'pattern_uploads'; // Create in Appwrite Storage
 const DATABASE_ID = 'YOUR_DATABASE_ID';
 const PATTERNS_COLLECTION_ID = 'patterns';
 
