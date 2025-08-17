@@ -1,123 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image to Knitting Pattern</title>
-    <link rel="stylesheet" href="assets/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script type="module" src="firebase.js"></script> 
-    <script src="script.js"></script>
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
-    <script type="module">
-      import { uploadPatternFile } from "./appwrite.js";
-  
-      function uploadFile() {
-        const fileInput = document.getElementById('patternUpload');
-        uploadPatternFile(fileInput.files[0]);
-      }
-    </script>
-
-
-    <!-- Your Firebase Config -->
-        <script>
-          const firebaseConfig = {
-          apiKey: "YOUR_API_KEY",
-          authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-          projectId: "YOUR_PROJECT_ID",
-          storageBucket: "YOUR_PROJECT_ID.appspot.com",
-          appId: "YOUR_APP_ID"
-          };
-          firebase.initializeApp(firebaseConfig);
-       </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mosaic Threads | Stitch Pattern Generator</title>
+  <style>
+    /* === Unified Styles === */
+    :root {
+      --primary: #a83253;
+      --secondary: #f9f5f0;
+      --text: #333;
+    }
+    
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--secondary);
+      color: var(--text);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    header h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    header h1 span {
+      display: block;
+      font-size: 1.5rem;
+      color: #666;
+      font-weight: normal;
+    }
+    
+    /* === Upload Section === */
+    .upload-section {
+      text-align: center;
+      margin: 40px 0;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 0 10px;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    /* === Canvas Grid === */
+    #canvas-container {
+      width: 800px;
+      height: 800px;
+      margin: 20px auto;
+      position: relative;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .stitch {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    /* === Thread Palette === */
+    #thread-palette {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .thread-option {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+    
+    .thread-option.selected {
+      border-color: black;
+      transform: scale(1.1);
+    }
+    
+    /* === Database UI === */
+    #pattern-library {
+      display: none; /* Shown after creation */
+      margin-top: 40px;
+    }
+    
+    .saved-pattern {
+      display: inline-block;
+      margin: 10px;
+      text-align: center;
+    }
+    
+    .saved-pattern img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Transform any image<br>Into a soulful stitch pattern</h1>
-        
-        <!-- Upload Section -->
-        <div class="upload-section">
-            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-            <button onclick="document.getElementById('imageUpload').click()" class="btn btn-primary">
-                Upload an Image
-            </button>
-            
-            <!-- Pattern Controls -->
-            <div class="pattern-controls" id="patternControls" style="display: none;">
-                <div class="control-group">
-                    <label for="yarnWeight">Yarn Weight:</label>
-                    <select id="yarnWeight">
-                        <option value="lace">Lace</option>
-                        <option value="fingering">Fingering</option>
-                        <option value="worsted" selected>Worsted</option>
-                        <option value="bulky">Bulky</option>
-                    </select>
-                </div>
-                
-                <div class="control-group">
-                    <label for="stitchSize">Stitches per inch:</label>
-                    <input type="number" id="stitchSize" value="5" min="3" max="10">
-                </div>
-                
-                <div class="control-group">
-                    <label>
-                        <input type="checkbox" id="showGrid" checked> 
-                        Show stitch grid
-                    </label>
-                </div>
-                
-                <div class="control-group">
-                    <label for="gridSize">Stitches per block:</label>
-                    <input type="number" id="gridSize" value="5" min="1" max="20">
-                </div>
-                
-                <button id="generatePattern" class="btn btn-primary">Generate Pattern</button>
-            </div>
-        </div>
-        
-        <hr>
-        
-        <!-- Palette Inspirations -->
-        <div class="palette-section">
-            <h2>Yarn Color Palettes</h2>
-            <div class="palette-grid" id="paletteGrid"></div>
-        </div>
-        
-        <!-- Pattern Preview -->
-        <div class="pattern-preview" id="patternPreview" style="display: none;">
-            <h2>Your Knitting Pattern</h2>
-            <canvas id="patternCanvas"></canvas>
-            <button id="downloadPDF" class="btn btn-outline">Download PDF Instructions</button>
-            
-            <!-- Knitting Instructions -->
-            <div class="pattern-instructions">
-                <h3>Instructions</h3>
-                <div class="instructions-content" id="instructionsContent"></div>
-            </div>
-        </div>
+  <header>
+    <h1>Transform any image <span>Into a soulful stitch pattern</span></h1>
+  </header>
 
-        <div id="auth-ui" class="auth-section">
-          <h3>Save Your Patterns Forever</h3>
-          <input type="email" id="email" placeholder="Email">
-          <input type="password" id="password" placeholder="Password">
-          <input type="file" id="patternUpload" accept="image/*">
-          <button onclick="uploadFile()">Upload Pattern</button>
-          <button id="signupBtn" class="btn">Sign Up (Free)</button>
-          <button id="loginBtn" class="btn btn-outline">Log In</button>
-          <p class="auth-note">No tricks, no fees—just your knitting history, safe and sound.</p>
-        </div>
-        
-        <!-- Quotes -->
-        <div class="quotes">
-            <div class="quote">"Each stitch a prayer, each row a revelation."</div>
-            <div class="quote">"May your threads carry peace and quiet joy."</div>
-        </div>
+  <main>
+    <!-- Image Upload -->
+    <section class="upload-section">
+      <button id="upload-btn" class="btn btn-primary">Upload Image</button>
+      <button id="template-btn" class="btn btn-secondary">Browse Templates</button>
+      <input type="file" id="image-upload" accept="image/*" hidden>
+    </section>
+
+    <!-- Canvas Grid -->
+    <div id="canvas-container"></div>
+
+    <!-- Thread Palette -->
+    <div id="thread-palette"></div>
+
+    <!-- Pattern Tools -->
+    <div style="text-align: center;">
+      <button id="save-btn" class="btn btn-primary" disabled>Save to My Patterns</button>
+      <input type="text" id="pattern-name" placeholder="Pattern Name">
     </div>
-    <footer class="site-footer">
-      © <span id="current-year">2025</span> Lydia Li. All rights reserved.
-    </footer>
+
+    <!-- Pattern Library -->
+    <section id="pattern-library">
+      <h2>My Saved Patterns</h2>
+      <div id="saved-patterns"></div>
+    </section>
+  </main>
+
+  <script>
+    // ===== Unified Database =====
+    const knittingDB = {
+      threads: [
+        { id: '1', color: '#e6a8b4', brand: 'Rose Quartz' },
+        { id: '2', color: '#c46d82', brand: 'Berry' },
+        { id: '3', color: '#a83253', brand: 'Wine' },
+        { id: '4', color: '#d4b483', brand: 'Sand' },
+        { id: '5', color: '#a67c52', brand: 'Caramel' }
+      ],
+      patterns: [],
+      
+      save() {
+        localStorage.setItem('knittingDB', JSON.stringify({
+          threads: this.threads,
+          patterns: this.patterns
+        }));
+      },
+      
+      load() {
+        const data = JSON.parse(localStorage.getItem('knittingDB'));
+        if (data) {
+          this.threads = data.threads || [];
+          this.patterns = data.patterns || [];
+        }
+      }
+    };
+
+    // ===== Canvas State =====
+    const gridSize = 20;
+    let grid = Array(gridSize * gridSize).fill('#FFFFFF');
+    let selectedThread = knittingDB.threads[0];
+
+    // ===== DOM Elements =====
+    const canvas = document.getElementById('canvas-container');
+    const threadPalette = document.getElementById('thread-palette');
+    const saveBtn = document.getElementById('save-btn');
+    const patternName = document.getElementById('pattern-name');
+    const savedPatterns = document.getElementById('saved-patterns');
+
+    // ===== Initialize =====
+    knittingDB.load();
+    renderGrid();
+    renderThreadPalette();
+    renderSavedPatterns();
+
+    // ===== Core Functions =====
+    function renderGrid() {
+      canvas.innerHTML = '';
+      grid.forEach((color, index) => {
+        const stitch = document.createElement('div');
+        stitch.className = 'stitch';
+        stitch.style.backgroundColor = color;
+        stitch.style.left = `${(index % gridSize) * 40}px`;
+        stitch.style.top = `${Math.floor(index / gridSize) * 40}px`;
+        stitch.addEventListener('click', () => {
+          grid[index] = selectedThread.color;
+          stitch.style.backgroundColor = selectedThread.color;
+          saveBtn.disabled = false;
+        });
+        canvas.appendChild(stitch);
+      });
+    }
+
+    function renderThreadPalette() {
+      threadPalette.innerHTML = '';
+      knittingDB.threads.forEach(thread => {
+        const threadEl = document.createElement('div');
+        threadEl.className = 'thread-option';
+        threadEl.style.backgroundColor = thread.color;
+        threadEl.title = thread.brand;
+        threadEl.addEventListener('click', () => {
+          document.querySelectorAll('.thread-option').forEach(el => 
+            el.classList.remove('selected'));
+          threadEl.classList.add('selected');
+          selectedThread = thread;
+        });
+        threadPalette.appendChild(threadEl);
+      });
+      threadPalette.firstChild?.classList.add('selected');
+    }
+
+    function renderSavedPatterns() {
+      savedPatterns.innerHTML = '';
+      knittingDB.patterns.forEach(pattern => {
+        const patternEl = document.createElement('div');
+        patternEl.className = 'saved-pattern';
+        patternEl.innerHTML = `
+          <img src="${pattern.preview}" alt="${pattern.name}">
+          <p>${pattern.name}</p>
+        `;
+        patternEl.addEventListener('click', () => loadPattern(pattern));
+        savedPatterns.appendChild(patternEl);
+      });
+    }
+
+    // ===== Image Processing =====
+    document.getElementById('upload-btn').addEventListener('click', () => {
+      document.getElementById('image-upload').click();
+    });
+
+    document.getElementById('image-upload').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          processImageToGrid(img);
+          saveBtn.disabled = false;
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function processImageToGrid(img) {
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = gridSize;
+      tempCanvas.height = gridSize;
+      const ctx = tempCanvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, gridSize, gridSize);
+      
+      const imageData = ctx.getImageData(0, 0, gridSize, gridSize).data;
+      
+      for (let i = 0; i < gridSize * gridSize; i++) {
+        const r = imageData[i * 4];
+        const g = imageData[i * 4 + 1];
+        const b = imageData[i * 4 + 2];
+        grid[i] = findClosestThreadColor(r, g, b);
+      }
+      
+      renderGrid();
+    }
+
+    function findClosestThreadColor(r, g, b) {
+      let closestColor = '#FFFFFF';
+      let minDistance = Infinity;
+
+      knittingDB.threads.forEach(thread => {
+        const hex = thread.color;
+        const [tr, tg, tb] = hexToRgb(hex);
+        const distance = Math.sqrt(
+          Math.pow(r - tr, 2) + 
+          Math.pow(g - tg, 2) + 
+          Math.pow(b - tb, 2)
+        );
+        
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestColor = hex;
+        }
+      });
+
+      return closestColor;
+    }
+
+    function hexToRgb(hex) {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+      return [r, g, b];
+    }
+
+    // ===== Pattern Saving =====
+    saveBtn.addEventListener('click', () => {
+      if (!patternName.value.trim()) {
+        alert('Please name your pattern');
+        return;
+      }
+
+      // Create preview thumbnail
+      const previewCanvas = document.createElement('canvas');
+      previewCanvas.width = 100;
+      previewCanvas.height = 100;
+      const previewCtx = previewCanvas.getContext('2d');
+      
+      // Draw scaled-down version
+      for (let y = 0; y < gridSize; y++) {
+        for (let x = 0; x < gridSize; x++) {
+          previewCtx.fillStyle = grid[y * gridSize + x];
+          previewCtx.fillRect(
+            x * (100 / gridSize), 
+            y * (100 / gridSize), 
+            100 / gridSize, 
+            100 / gridSize
+          );
+        }
+      }
+
+      const pattern = {
+        id: Date.now(),
+        name: patternName.value,
+        grid: [...grid],
+        threads: [...new Set(
+          knittingDB.threads.filter(t => grid.includes(t.color)).map(t => t.id)
+        ],
+        preview: previewCanvas.toDataURL(),
+        created: new Date().toISOString()
+      };
+
+      knittingDB.patterns.unshift(pattern);
+      knittingDB.save();
+      
+      renderSavedPatterns();
+      document.getElementById('pattern-library').style.display = 'block';
+      saveBtn.disabled = true;
+      patternName.value = '';
+    });
+
+    function loadPattern(pattern) {
+      grid = [...pattern.grid];
+      renderGrid();
+      patternName.value = `${pattern.name} (Copy)`;
+      saveBtn.disabled = false;
+    }
+  </script>
 </body>
 </html>
