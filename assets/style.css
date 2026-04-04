@@ -1,205 +1,86 @@
-/* General Styles */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f7f5;
-    margin: 0;
-    padding: 0;
+/* 1. Variables - Set these once at the top */
+:root {
+    --primary: #a83253;       /* Your signature berry color */
+    --secondary: #f9f7f5;     /* Soft off-white background */
+    --accent: #6b2135;        /* Darker berry for hovers */
+    --text: #333;
 }
 
+/* 2. Global Reset & Body */
+body {
+    font-family: 'Georgia', serif; /* Keeps your elegant serif look */
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--secondary);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 3. Layout Containers */
 .container {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
     padding: 2rem;
-}
-
-h1, h2, h3 {
-    font-weight: 300;
-    color: #5a4a42;
     text-align: center;
 }
 
-h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
-h2 { margin-bottom: 1.5rem; }
-h3 { text-align: left; margin-top: 0; }
-
-/* Center-align the quotes container */
-.quotes {
-  text-align: center;  /* Ensures all child text is centered */
-  margin: 4rem 0;
-  font-style: italic;
-  color: #8c6a56;
-}
-
-/* Debug-only rule (remove later) */
-.quotes.debug {  /* or just .quotes */
-  border: 2px solid red;
-}
-/* Explicitly center individual quote lines (optional) */
-
-.quote {
-  display: block;      /* Ensures each quote takes full width */
-  margin-bottom: 1.5rem;
-  text-align: center;  /* Redundant if .quotes is already centered, but adds clarity */
-}
-
-.site-footer {
-  text-align: center;
-  padding: 1.5rem;
-  margin-top: 3rem;
-  color: #5a4a42; /* Match your theme */
-  font-size: 0.9rem;
-  border-top: 1px solid #d9d2c9; /* Subtle line */
-}
-
-/* Upload Section */
-.upload-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 3rem 0;
-    gap: 1rem;
-}
-
-.pattern-controls {
+#canvas-container {
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     background: white;
-    padding: 1.5rem;
+    padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    margin-top: 1rem;
-    width: 100%;
-    max-width: 500px;
+    display: inline-block;
 }
 
-.control-group {
-    margin-bottom: 1rem;
+/* 4. Controls & Buttons */
+.controls {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-.control-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #5a4a42;
-}
-
-.control-group input, .control-group select {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #d9d2c9;
-    border-radius: 4px;
-}
-
-/* Buttons */
-.btn {
-    padding: 0.8rem 1.8rem;
-    border-radius: 30px;
-    font-size: 1rem;
+button {
+    padding: 12px 24px;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background-color: #8c6a56;
+    background-color: var(--primary);
     color: white;
     border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
 }
 
-.btn-primary:hover { background-color: #6d5241; }
-
-/* Download PDF */
-#downloadPDF {
-    margin-left: 1rem;
-    background-color: white;
+button:hover {
+    background-color: var(--accent);
 }
 
-#downloadPDF:hover {
-    background-color: #f0e6d2;
+.btn-secondary {
+    background-color: #777;
 }
 
-.auth-section {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-.auth-note {
-  font-size: 0.9rem;
-  color: #666;
-  text-align: center;
-  margin-top: 1rem;
+/* 5. Pattern Gallery Styles */
+.saved-patterns-section {
+    margin-top: 40px;
+    width: 100%;
 }
 
-/* Palette Grid */
-.palette-grid {
+.saved-patterns-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.palette-card {
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.palette-card:hover { transform: translateY(-5px); }
-.palette-card.active { outline: 3px solid #8c6a56; }
-
-.palette-swatches {
-    display: flex;
-    height: 50px;
-}
-
-.palette-name {
-    padding: 1rem;
-    text-align: center;
-    font-weight: 500;
-}
-
-/* Pattern Preview */
-.pattern-preview {
-    text-align: center;
-    margin: 2rem 0;
-}
-
-#patternCanvas {
-    max-width: 100%;
-    border: 1px solid #d9d2c9;
-    margin: 1rem 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    background: white;
-}
-
-/* Instructions */
-.pattern-instructions {
-    background: white;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    text-align: left;
-}
-
-.instructions-content {
-    font-family: monospace;
-    white-space: pre-wrap;
-    line-height: 1.4;
-    background: #f5f5f5;
-    padding: 1rem;
+.saved-pattern img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ddd;
     border-radius: 4px;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .palette-grid { grid-template-columns: 1fr; }
-    .container { padding: 1rem; }
 }
