@@ -6,6 +6,8 @@ const patternCanvas = document.getElementById('patternCanvas');
 const generatePatternBtn = document.getElementById('generateBtn');
 const downloadBtn = document.getElementById('saveBtn');
 const clearBtn = document.getElementById('clear-btn');
+const uploadBtn = document.getElementById('upload-btn');
+const imageInput = document.getElementById('image-upload');
 
 // 2. The Data (Combined and Simplified)
 const yarnPalettes = {
@@ -46,4 +48,24 @@ downloadBtn.addEventListener('click', () => {
 clearBtn.addEventListener('click', () => {
     const ctx = patternCanvas.getContext('2d');
     ctx.clearRect(0, 0, patternCanvas.width, patternCanvas.height);
+});
+
+// 6. Upload and Display Image Logic
+uploadBtn.addEventListener('click', () => imageInput.click()); // Clicks the hidden input
+
+imageInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                const ctx = patternCanvas.getContext('2d');
+                // This draws your image to fit the canvas perfectly
+                ctx.drawImage(img, 0, 0, patternCanvas.width, patternCanvas.height);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
 });
