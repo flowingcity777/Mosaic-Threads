@@ -3,8 +3,9 @@ import { uploadPatternFile, linkPatternToUser } from './userData.js';
 
 // 1. Elements (Make sure these IDs match your index.html!)
 const patternCanvas = document.getElementById('patternCanvas');
-const generatePatternBtn = document.getElementById('generateBtn'); 
+const generatePatternBtn = document.getElementById('generateBtn');
 const downloadBtn = document.getElementById('saveBtn');
+const clearBtn = document.getElementById('clear-btn');
 
 // 2. The Data (Combined and Simplified)
 const yarnPalettes = {
@@ -39,4 +40,10 @@ downloadBtn.addEventListener('click', () => {
     link.download = 'my-stitch-pattern.png';
     link.href = patternCanvas.toDataURL();
     link.click();
+});
+
+// 5. Clear Canvas Logic
+clearBtn.addEventListener('click', () => {
+    const ctx = patternCanvas.getContext('2d');
+    ctx.clearRect(0, 0, patternCanvas.width, patternCanvas.height);
 });
