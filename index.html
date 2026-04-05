@@ -1,43 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mosaic Threads | Stitch Pattern Generator</title>
-  <link rel="stylesheet" href="assets/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Mosaic Threads - Knitting Pattern Generator</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>Transform any image <span>Into a soulful stitch pattern</span></h1>
-  </header>
-
-  <main>
-    <!-- Image Upload -->
-    <section class="upload-section">
-      <button id="upload-btn" class="btn btn-primary">Upload Image</button>
-      <input type="file" id="image-upload" accept="image/*" style="display: none;">
-      <button id="generateBtn" class="btn btn-primary">Generate Pattern</button>
-      <button id="clear-btn" class="btn btn-secondary">Clear Canvas</button>
-    </section>
-
-    <!-- Canvas Grid -->
-    <div id="canvas-container"></div>
-
-    <!-- Thread Palette -->
-    <div id="thread-palette"></div>
-
-    <!-- Pattern Tools -->
-    <div class="center">
-      <button id="saveBtn" class="btn btn-primary" disabled>Save to My Patterns</button>
-      <input type="text" id="pattern-name" placeholder="Pattern Name">
+    <div class="container">
+        <header>
+            <h1>🧶 Mosaic Threads</h1>
+            <p>Transform any image into a customizable knitting pattern!</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- Status Message Area -->
+            <div id="statusMessage"></div>
+            
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="upload-area">
+                    <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/gif">
+                    <label for="imageUpload" class="upload-label">📸 Upload an Image</label>
+                    <p style="margin-top: 15px; font-size: 14px; color: #8b7355;">Supported: JPG, PNG, GIF</p>
+                    <div id="imagePreview"></div>
+                </div>
+            </div>
+            
+            <!-- Settings Section -->
+            <div class="settings-section">
+                <h3>⚙️ Pattern Settings</h3>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="yarnWeight">🧵 Yarn Weight</label>
+                        <select id="yarnWeight">
+                            <option value="lace">Lace (2-ply)</option>
+                            <option value="fingering">Fingering (4-ply)</option>
+                            <option value="sport">Sport (5-ply)</option>
+                            <option value="dk">DK (8-ply)</option>
+                            <option value="worsted" selected>Worsted (10-ply)</option>
+                            <option value="bulky">Bulky (12-ply)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <label for="stitchesPerInch">📏 Stitches per Inch</label>
+                        <input type="number" id="stitchesPerInch" min="1" max="10" step="0.5" value="5">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Color Palette Section -->
+            <div class="palette-section">
+                <h3>🎨 Color Palettes</h3>
+                <div class="palette-buttons">
+                    <button class="palette-btn" data-palette="rose">🌹 Rose Garden</button>
+                    <button class="palette-btn" data-palette="earth">🌍 Earthbound Harmony</button>
+                    <button class="palette-btn" data-palette="morning">🌅 Morning Prayer</button>
+                    <button class="palette-btn" data-palette="ocean">🌊 Ocean Depths</button>
+                    <button class="palette-btn" data-palette="forest">🌲 Forest Floor</button>
+                </div>
+            </div>
+            
+            <!-- Generate Button -->
+            <div class="generate-btn">
+                <button class="btn-primary" id="generateBtn">✨ Generate Pattern ✨</button>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-section">
+                <h3>📊 Your Knitting Pattern</h3>
+                <div id="patternGrid"></div>
+                <div id="writtenInstructions"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Mosaic Threads | Happy Knitting! 🧶</p>
+        </footer>
     </div>
-
-    <!-- Pattern Library -->
-    <section id="pattern-library">
-      <h2>My Saved Patterns</h2>
-      <div id="saved-patterns"></div>
-    </section>
-  </main>
-  <script src="js/script.js"></script>
+    
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
 </body>
 </html>
