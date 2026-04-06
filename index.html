@@ -1,86 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Mosaic Threads - Knitting Pattern Generator</title>
-    <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mosaic Threads</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🧶 Mosaic Threads</h1>
-            <p>Transform any image into a customizable knitting pattern!</p>
-        </header>
-        
-        <div class="main-content">
-            <!-- Status Message Area -->
-            <div id="statusMessage"></div>
-            
-            <!-- Upload Section -->
-            <div class="upload-section">
-                <div class="upload-area">
-                    <input type="file" id="imageUpload" accept="image/jpeg, image/png, image/gif">
-                    <label for="imageUpload" class="upload-label">📸 Upload an Image</label>
-                    <p style="margin-top: 15px; font-size: 14px; color: #8b7355;">Supported: JPG, PNG, GIF</p>
-                    <div id="imagePreview"></div>
-                </div>
-            </div>
-            
-            <!-- Settings Section -->
-            <div class="settings-section">
-                <h3>⚙️ Pattern Settings</h3>
-                <div class="settings-grid">
-                    <div class="setting-item">
-                        <label for="yarnWeight">🧵 Yarn Weight</label>
-                        <select id="yarnWeight">
-                            <option value="lace">Lace (2-ply)</option>
-                            <option value="fingering">Fingering (4-ply)</option>
-                            <option value="sport">Sport (5-ply)</option>
-                            <option value="dk">DK (8-ply)</option>
-                            <option value="worsted" selected>Worsted (10-ply)</option>
-                            <option value="bulky">Bulky (12-ply)</option>
-                        </select>
-                    </div>
-                    
-                    <div class="setting-item">
-                        <label for="stitchesPerInch">📏 Stitches per Inch</label>
-                        <input type="number" id="stitchesPerInch" min="1" max="10" step="0.5" value="5">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Color Palette Section -->
-            <div class="palette-section">
-                <h3>🎨 Color Palettes</h3>
-                <div class="palette-buttons">
-                    <button class="palette-btn" data-palette="rose">🌹 Rose Garden</button>
-                    <button class="palette-btn" data-palette="earth">🌍 Earthbound Harmony</button>
-                    <button class="palette-btn" data-palette="morning">🌅 Morning Prayer</button>
-                    <button class="palette-btn" data-palette="ocean">🌊 Ocean Depths</button>
-                    <button class="palette-btn" data-palette="forest">🌲 Forest Floor</button>
-                </div>
-            </div>
-            
-            <!-- Generate Button -->
-            <div class="generate-btn">
-                <button class="btn-primary" id="generateBtn">✨ Generate Pattern ✨</button>
-            </div>
-            
-            <!-- Results Section -->
-            <div class="results-section">
-                <h3>📊 Your Knitting Pattern</h3>
-                <div id="patternGrid"></div>
-                <div id="writtenInstructions"></div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>© 2025 Mosaic Threads | Happy Knitting! 🧶</p>
-        </footer>
-    </div>
-    
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
+  <main class="container">
+    <h1>Mosaic Threads</h1>
+    <p>Transform any image into a customizable knitting pattern.</p>
+
+    <section class="card">
+      <h2>Upload an Image</h2>
+      <input type="file" id="imageUpload" accept="image/png,image/jpeg,image/gif" />
+      <p class="helper">Supported: JPG, PNG, GIF</p>
+      <div id="imagePreview" class="image-preview"></div>
+    </section>
+
+    <section class="card">
+      <h2>Pattern Settings</h2>
+
+      <label for="yarnWeight">Yarn Weight</label>
+      <select id="yarnWeight">
+        <option value="lace">Lace (2-ply)</option>
+        <option value="fingering">Fingering (4-ply)</option>
+        <option value="sport">Sport (5-ply)</option>
+        <option value="dk">DK (8-ply)</option>
+        <option value="worsted" selected>Worsted (10-ply)</option>
+        <option value="bulky">Bulky (12-ply)</option>
+      </select>
+
+      <label for="stitchesPerInch">Stitches per Inch</label>
+      <input type="number" id="stitchesPerInch" min="2" max="12" step="0.5" value="5" />
+    </section>
+
+    <section class="card">
+      <h2>Color Palettes</h2>
+      <div class="palette-list">
+        <button type="button" class="palette-btn active" data-palette="rose">Rose Garden</button>
+        <button type="button" class="palette-btn" data-palette="earth">Earthbound Harmony</button>
+        <button type="button" class="palette-btn" data-palette="morning">Morning Prayer</button>
+        <button type="button" class="palette-btn" data-palette="ocean">Ocean Depths</button>
+        <button type="button" class="palette-btn" data-palette="forest">Forest Floor</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <button id="generateBtn">Generate Pattern</button>
+      <div id="statusMessage" class="status-message" style="display:none;"></div>
+    </section>
+
+    <section class="card">
+      <h2>Your Knitting Pattern</h2>
+      <div id="patternGrid"></div>
+      <div id="writtenInstructions"></div>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
