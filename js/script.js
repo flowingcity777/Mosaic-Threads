@@ -70,123 +70,215 @@ function handleImageUpload(event) {
 }
 
 // Generate pattern - FIXED VERSION
-function generatePattern() {
-    console.log('Generate button clicked!');
+let uploadedImageData = null;
+let selectedPalette = "rose";
+
+const PALETTES = {
+    rose: [
+        [210, 115, 138],
+        [245, 214, 220],
+        [138, 74, 92],
+        [250, 240, 235]
+    ],
+    earth: [
+        [139,115,85],
+        [92, 74, 58],
+        [201, 183, 160],
+        [227, 216, 199]
+    ],
+    morning: [
+        [244, 228, 193],
+        [255, 248, 220],
+        [214, 196, 154],
+        [181, 154, 112]
+    ],
+    ocean: [
+        [74, 139, 167],
+        [40, 90, 120],
+        [155, 201, 220],
+        [218, 238, 245]
+    ],
+    forest: [
+        [90, 122, 74]
+        [58, 84, 46],
+        [170, 191, 151],
+        [222, 232, 214]
+    ]
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    const uploadInput = 
+document.getElementById("ImageUpload");
+    const generateBtn = 
+document.getElementById("generateBtn");
+
+  uploadInput?.addEventListener("change", handleImageUpload);
+    generateBtn?.addEventListener("click", generatePattern);
+
+document.querySelectorAll(".palette-btn").
+forEach((btn) => {
+    btn.addEventListener("click", () => {
+        selectedPalette =
+btn.dataset.palette;
+        showMessage('Selected $ 
+{btn.textContent.trim()} palette',
+"info");
+    });
+  });
+});
+
+function handleImageUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const img = new Image();
+        img.onload = function () {
+            uploadedImageData = img;
+
+            const previewDiv =
+document.getElementById("imagePreview");
+            if (previewDiv) {
+                previewDiv.innerHTML = "";
+                const previewImg = 
+document.createElement("img");
+                previewImg.src = e.target.result;
+
+previewDiv.appendChild(previewImg);
+            }
+
+            showMessage('Image uploaded
+successfully. Click "Generate Pattern".',
+"success");
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDetaURL(file);
+}
     
+function generatePattern() {    
     // Check if image was uploaded
     if (!uploadedImageData) {
         showMessage('Please upload an image first!', 'error');
         return;
     }
     
-    showMessage('Generating pattern...', 'info');
-    
     // Get settings
-    const stitchesPerInch = document.getElementById('stitchesPerInch')?.value || 5;
+    const stitchesPerInch = Number(document.getElementById("stitchesPerInch")?.value || 5);
+    const gridSize = 24;
     const yarnWeight = document.getElementById('yarnWeight')?.value || 'worsted';
-    
-    console.log('Settings:', { stitchesPerInch, yarnWeight });
-    
-    // Create a simple pattern grid (for demonstration)
-    const gridSize = 20;
-    const patternHTML = generateSimplePatternGrid(gridSize);
-    
-    // Display the pattern
-    const patternGrid = document.getElementById('patternGrid');
-    if (patternGrid) {
-        patternGrid.innerHTML = patternHTML;
-        console.log('Pattern grid displayed');
-    } else {
-        console.error('patternGrid element not found');
-    }
-    
-    // Generate written instructions
-    const instructions = generateSimpleInstructions(gridSize, stitchesPerInch, yarnWeight);
-    const instructionsDiv = document.getElementById('writtenInstructions');
-    if (instructionsDiv) {
-        instructionsDiv.innerHTML = instructions;
-        console.log('Instructions displayed');
-    }
-    
-    showMessage('Pattern generated successfully!', 'success');
-}
 
-// Generate a simple pattern grid (demo version)
-function generateSimplePatternGrid(size) {
-    let html = '<div style="display: grid; grid-template-columns: repeat(' + size + ', 25px); gap: 2px; overflow-x: auto; padding: 10px;">';
-    
-    for (let row = 0; row < size; row++) {
-        for (let col = 0; col < size; col++) {
-            // Create alternating pattern based on position
-            let color;
-            if ((row + col) % 3 === 0) color = '#CC3333'; // Red
-            else if ((row + col) % 3 === 1) color = '#339933'; // Green
-            else color = '#3366CC'; // Blue
-            
-            html += `<div style="width: 25px; height: 25px; background-color: ${color}; border: 1px solid #ddd; border-radius: 3px;" title="Row ${row+1}, Col ${col+1}"></div>`;
+    const pattern = 
+imageToPatternGrid(uploadedImageData, gridSize, PALETTES[selectedPalette]);
+    renderPattern(pattern);
+    renderInstructions(pattern, stitchesPerInch);
+
+    showMessage("Pattern generated successfully!", "success");
+    }
+
+    function imageToPatternGrid(img, gridSize, palette) {
+        const canvas =
+    document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = gridSize;
+        canvas.height.gridSize;
+
+        ctx.drawImage(img, 0, 0, gridSize, gridSize);
+
+        const imageData = ctx.getImageData(0, 0, gridSize, gridSize);
+        const { data } = imageData;
+        const grid = [];
+
+        for (let y = 0; y < gridSize; y++) {
+            const row = [];
+            for (let x = 0; x < gridSize; x++) {
+                const i = (y * gridSize + x) * 4;
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+
+                const nearest = getClosestColor([r, g, b], palette);
+                row.push(nearest);
+            }
+            grid.push(row);
+        }
+
+        return grid;
+    }
+
+function getClosestColor([r, g, b], palette) {
+    let best = palette[0];
+    let bestDistance = Infinity;
+
+    for (const color of palette) {
+        const dr = r - color[0];
+        const dg = g - color[1];
+        const db = b - color[2];
+        const distance = dr * dr + dg * dg + db * db;
+
+        if (distance < bestDistance) {
+            bestDestance = distance;
+            best = color;
         }
     }
     
+    return best;
+}
+
+function renderPattern(grid) {
+    const patternGrid = document.getElementById("patternGrid"); 
+    if (!patternGrid) return; 
+
+    let html = '<div style = "display:grid;grid-template-columns: repeat(${grid[0].length}, 16px);gap:1px;">';
+
+    for (const row of grid) {
+        for (const color of row) {
+            html += '<div style="width:16px;height:16px;background:rgb($(color[0],${color[1],${color[2]});border:1px solid #eee;"></div>';
+        }
+    }
+
     html += '</div>';
-    html += '<p style="text-align: center; margin-top: 10px; font-size: 14px; color: #666;">✨ Demo pattern - Each square = 1 stitch ✨</p>';
-    
-    return html;
+    patternGrid.innerHTML = html;
 }
 
-// Generate simple written instructions
-function generateSimpleInstructions(gridSize, stitchesPerInch, yarnWeight) {
-    const totalStitches = gridSize * gridSize;
-    const widthInches = (gridSize / stitchesPerInch).toFixed(1);
-    
-    let html = '<h3 style="color: #6b3e1c; margin-top: 0;">📝 Knitting Instructions</h3>';
-    html += `<p><strong>Pattern size:</strong> ${gridSize} stitches wide × ${gridSize} rows tall</p>`;
-    html += `<p><strong>Total stitches:</strong> ${totalStitches}</p>`;
-    html += `<p><strong>Approximate width:</strong> ${widthInches} inches (based on ${stitchesPerInch} stitches/inch)</p>`;
-    html += `<p><strong>Yarn weight:</strong> ${yarnWeight}</p>`;
-    html += '<p><strong>Color key:</strong></p>';
-    html += '<ul style="margin-left: 20px;">';
-    html += '<li style="color: #CC3333;">■ Red - Main color</li>';
-    html += '<li style="color: #339933;">■ Green - Secondary color</li>';
-    html += '<li style="color: #3366CC;">■ Blue - Accent color</li>';
-    html += '</ul>';
-    html += '<p><strong>Instructions:</strong> Cast on ' + gridSize + ' stitches. Follow the grid above from bottom to top, right to left.</p>';
-    html += '<p style="background: #f0e6d2; padding: 10px; border-radius: 8px;">💡 <strong>Tip:</strong> For a real pattern, upload a clear, high-contrast image. The pattern will match your image colors!</p>';
-    
-    return html;
+function renderInstructions(grid, stitchesPerInch) {
+    const instructionsDiv) return;
+
+    const width = grid[0].length;
+    const height = grid.length;
+    const approxWidth = (width / stitchesPerInch).toFixed(1);
+
+    instructionsDiv.innerHTML = '
+        <h3>Knitting Instructions</h3>
+        <p><strong>Approximate width:</strong>${approxWidth} inches</p>
+        <p><strong>Tip:</strong> Read the chart from bottom to top.</p>
+         ';
 }
 
-// Show status messages
-function showMessage(msg, type = 'info') {
-    const msgDiv = document.getElementById('statusMessage');
-    if (!msgDiv) {
-        console.log('Message:', msg);
-        return;
-    }
-    
+function showMessage(msg, type = "info") {
+    const msgDiv = 
+document.getElementById("statusMessage");
+    if (!msgDiv) return;
+
     msgDiv.textContent = msg;
-    msgDiv.style.display = 'block';
-    msgDiv.style.padding = '12px';
-    msgDiv.style.margin = '10px 0';
-    msgDiv.style.borderRadius = '8px';
-    
-    if (type === 'error') {
-        msgDiv.style.backgroundColor = '#ffe0e0';
-        msgDiv.style.color = '#cc0000';
-        msgDiv.style.border = '1px solid #cc0000';
-    } else if (type === 'success') {
-        msgDiv.style.backgroundColor = '#e0ffe0';
-        msgDiv.style.color = '#006600';
-        msgDiv.style.border = '1px solid #006600';
+    msgDiv.style.display = "block";
+    msgDiv.style.padding = "12px";
+    msgDiv.style.margin = "10px 0";
+    msgDiv.style.borderRadius = "8px";
+
+    if (type === "error" ) {
+        msgDiv.style.backgroundColor = "#ffe0e0";
+        msgDiv.style.color = '#cc0000";
+        msgDiv.style.border = "1px solid #cc0000";
+    } else if (type === "success") {
+        msgDiv.style.color = "#006600";
+        msgDiv.style.border = "1px solid #006600";
     } else {
-        msgDiv.style.backgroundColor = '#e0e0ff';
-        msgDiv.style.color = '#000066';
-        msgDiv.style.border = '1px solid #000066';
+        msgDiv.style.backgroundColor = "#e0e0ff";
+        msgDiv.style.color = "#000066";
+        msgDiv.style.border = "1px solid #000066";
     }
-    
-    // Auto-hide after 3 seconds
-    setTimeout(() => {
-        if (msgDiv) {
-            msgDiv.style.display = 'none';
-        }
-    }, 3000);
 }
+        
