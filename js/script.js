@@ -165,7 +165,8 @@ function colorDistance(a, b) {
   const dr = a[0] - b[0];
   const dg = a[1] - b[1];
   const db = a[2] - b[2];
-  return dr * dr + dg * dg + db * db;
+  
+  return (0.3 * dr * dr) + (0.59 * dg * dg) + (0.11 * db * db);
 }
 
 function renderPattern(grid) {
