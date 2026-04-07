@@ -165,9 +165,8 @@ function smoothGrid(grid) {
           const ny = y + dy;
           const nx = x + dx;
 
-          of (grid[ny] && grid[ny][nx]) {
-            neighbors.push(grid[ny]
-    [nx].name);
+          if (grid[ny] && grid[ny][nx]) {
+            neighbors.push(grid[ny][nx].name);
               }
             }
           }
@@ -178,8 +177,7 @@ function smoothGrid(grid) {
       const mostCommon = Object.entries(counts)
                                   .sort((a, b) => b[1] - a[1])[0][0];
 
-      return
-PALETTES[selectedPalette].find(c => c.name === mostCommon);
+      return PALETTES[selectedPalette].find(c => c.name === mostCommon);
     })
   );
 }
@@ -220,9 +218,9 @@ function renderPattern(grid) {
         <div
           title="${cell.name}"
           
-        style="display:flex;align-items;center;
+        style="display:flex;align-items:center;
         justify-content:center;
-                  width:18px;;height:18px;
+                  width:18px;height:18px;
                   background:rgb(${cell.rgb[0]}, ${cell.rgb[1]}, ${cell.rgb[2]});
                   border:1px solid #ddd;
                   font-size:10px;
@@ -257,7 +255,7 @@ function renderInstructions(grid, stitchesPerInch, yarnWeight, palette) {
     <p><strong>Yarn weight:</strong> ${yarnWeight}</p>
     <p><strong>How to read:</strong> Read the chart from bottom to top.</p>
     <h4>Color Usage</h4>
-    <4>Row-by-Row Chart</h4>
+    <h4>Row-by-Row Chart</h4>
     <ul>${legend}</ul>
     <p style="font-family:monospace;font-size:12px;">
       ${generateRowInstructions(grid)}
@@ -266,10 +264,10 @@ function renderInstructions(grid, stitchesPerInch, yarnWeight, palette) {
 }
 
 function generateRowInstructions(grid) {
-  return grid.map(row, i) => {
+  return grid.map((row, i) => {
     const sequence = row.map(cell =>
 cell.name[0]).join(" ");
-    return `Row ${i + 1}: $(sequence}`;
+    return `Row ${i + 1}: ${sequence}`;
   }).join("<br>");
 }
 
