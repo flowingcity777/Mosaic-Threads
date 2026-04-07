@@ -181,8 +181,16 @@ function renderPattern(grid) {
       html += `
         <div
           title="${cell.name}"
-          style="width:18px;height:18px;background:rgb(${cell.rgb[0]}, ${cell.rgb[1]}, ${cell.rgb[2]});border:1px solid #ddd;"
-        ></div>
+          
+        style="display:flex;align-items;center;
+        justify-content:center;
+                  width:18px;;height:18px;
+                  background:rgb(${cell.rgb[0]}, ${cell.rgb[1]}, ${cell.rgb[2]});
+                  border:1px solid #ddd;
+                  font-size:10px;
+                  color:#000;">
+          ${cell.name[0]}
+        </div>
       `;
     }
   }
