@@ -104,10 +104,16 @@ function generatePattern() {
   const gridHeight = getScaledHeight(uploadedImage.width, uploadedImage.height, gridWidth);
   const palette = PALETTES[selectedPalette];
 
-  const pattern = imageToPatternGrid(uploadedImage, gridWidth, gridHeight, palette);
+  //STEP 1: generate raw pattern
+  let pattern = imageToPatternGrid(uploadedImage, gridWidth, gridHeight, palette);
 
+  //STEP 2: smooth it
+  pattern = smoothGrid(pattern);
+
+  //STEP 3: render
   renderPattern(pattern);
   renderInstructions(pattern, stitchesPerInch, yarnWeight, palette);
+  
   showMessage("Pattern generated successfully.", "success");
 }
 
@@ -144,6 +150,38 @@ function imageToPatternGrid(img, gridWidth, gridHeight, palette) {
   }
 
   return grid;
+}
+
+function smoothGrid(grid) {
+  const height = grid.length;
+  const width = grid[0].length;
+
+  return grid.map((row, y) =>
+    row.map((cell, x) => {
+      const neighbors = [];
+
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          const ny = y + dy;
+          const nx = x + dx;
+
+          of (grid[ny] && grid[ny][nx]) {
+            neighbors.push(grid[ny]
+    [nx].name);
+              }
+            }
+          }
+      
+      const counts = {}; 
+      neighbors.forEach(n => counts[n] = (counts[n] || 0) + 1);
+
+      const mostCommon = Object.entries(counts)
+                                  .sort((a, b) => b[1] - a[1])[0][0];
+
+      return
+PALETTES[selectedPalette].find(c => c.name === mostCommon);
+    })
+  );
 }
 
 function getClosestPaletteColor(pixel, palette) {
