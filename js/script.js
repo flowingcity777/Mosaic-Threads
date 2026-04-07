@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadInput = document.getElementById("imageUpload");
   const generateBtn = document.getElementById("generateBtn");
   const paletteButtons = document.querySelectorAll(".palette-btn");
-  const downloadBtn = document.getElementById("downloadBtn").disabled = false;downloadBtn?.addEventListener("click", downloadPattern);
+  const downloadBtn = document.getElementById("downloadBtn");
+downloadBtn?.addEventListener("click", downloadPattern);
 
   uploadInput?.addEventListener("change", handleImageUpload);
   generateBtn?.addEventListener("click", generatePattern);
@@ -327,7 +328,7 @@ document.querySelector("#patternGrid .chart");
   const ctx = canvas.getContext("2d");
 
   canvas.width = cols * cellSize;
-  convas.height = rows * cellSize;
+  canvas.height = rows * cellSize;
 
   let index = 0; 
 
