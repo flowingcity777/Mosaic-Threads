@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadInput = document.getElementById("imageUpload");
   const generateBtn = document.getElementById("generateBtn");
   const paletteButtons = document.querySelectorAll(".palette-btn");
+  const downloadBtn = document.getElementById("downloadBtn").disabled = false;downloadBtn?.addEventListener("click", downloadPattern);
 
   uploadInput?.addEventListener("change", handleImageUpload);
   generateBtn?.addEventListener("click", generatePattern);
@@ -307,3 +308,43 @@ function showMessage(message, type = "info") {
     msgDiv.style.border = "1px solid #c7d7fe";
   }
 }
+
+function downloadPattern() {
+  const gridElement = 
+document.querySelector("#patternGrid .chart");
+  if (!gridElement) {
+    showMessage("Generate a pattern first.", "error");
+      return;
+  }
+
+  const cells = gridElement.children;
+  const cols = getComputedStyle(gridElement).gridTemplateColumns.split(" ").length;
+  const rows = cells.length / cols;
+
+  const cellSize = 20;
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = cols * cellSize;
+  convas.height = rows * cellSize;
+
+  let index = 0; 
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const cell = cells[index];
+      const bg = cell.style.background;
+
+      ctx.fillStyle = bg; 
+      ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+
+          index++;
+      }
+    }
+
+   const link = document.createElement("a");
+    link.download = "knitting-pattern.png";
+    link.href = canvas.toDataURL();
+    link.click();
+ }
