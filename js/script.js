@@ -219,8 +219,20 @@ function renderInstructions(grid, stitchesPerInch, yarnWeight, palette) {
     <p><strong>Yarn weight:</strong> ${yarnWeight}</p>
     <p><strong>How to read:</strong> Read the chart from bottom to top.</p>
     <h4>Color Usage</h4>
+    <4>Row-by-Row Chart</h4>
     <ul>${legend}</ul>
+    <p style="font-family:monospace;font-size:12px;">
+      ${generateRowInstructions(grid)}
+    </p>
   `;
+}
+
+function generateRowInstructions(grid) {
+  return grid.map(row, i) => {
+    const sequence = row.map(cell =>
+cell.name[0]).join(" ");
+    return `Row ${i + 1}: $(sequence}`;
+  }).join("<br>");
 }
 
 function countColors(grid) {
