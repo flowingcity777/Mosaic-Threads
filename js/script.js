@@ -100,7 +100,7 @@ function generatePattern() {
   const stitchesPerInch = Number(document.getElementById("stitchesPerInch")?.value || 5);
   const yarnWeight = document.getElementById("yarnWeight")?.value || "worsted";
 
-  const gridWidth = 24;
+  const gridWidth = Number(document.getElementById("gridWidth")?.value || 40);
   const gridHeight = getScaledHeight(uploadedImage.width, uploadedImage.height, gridWidth);
   const palette = PALETTES[selectedPalette];
 
