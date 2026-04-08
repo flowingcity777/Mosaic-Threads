@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadInput = document.getElementById("imageUpload");
   const generateBtn = document.getElementById("generateBtn");
   const paletteButtons = document.querySelectorAll(".palette-btn");
-  const downloadBtn = document.getElementById("downloadBtn").disabled = false;
+  const downloadBtn = document.getElementById("downloadBtn"); if (downloadBtn) downloadBtn.disabled = false; 
 downloadBtn?.addEventListener("click", downloadPattern);
 
   uploadInput?.addEventListener("change", handleImageUpload);
@@ -115,6 +115,8 @@ function generatePattern() {
   //STEP 3: render
   renderPattern(pattern);
   renderInstructions(pattern, stitchesPerInch, yarnWeight, palette);
+
+  document.getElementById("downloadBtn").disabled = false;
   
   showMessage("Pattern generated successfully.", "success");
 }
@@ -310,12 +312,11 @@ function showMessage(message, type = "info") {
   }
 }
 
-function downloadPattern() {
-
-  console.log(gridElement):
-  
+function downloadPattern() {  
   const gridElement = 
 document.querySelector("#patternGrid .chart");
+  console.log(gridElement);
+  
   if (!gridElement) {
     showMessage("Generate a pattern first.", "error");
       return;
@@ -326,7 +327,6 @@ document.querySelector("#patternGrid .chart");
   const rows = cells.length / cols;
 
   const cellSize = 20;
-
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
 
