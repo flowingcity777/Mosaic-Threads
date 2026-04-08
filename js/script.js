@@ -311,6 +311,9 @@ function showMessage(message, type = "info") {
 }
 
 function downloadPattern() {
+
+  console.log(gridElement):
+  
   const gridElement = 
 document.querySelector("#patternGrid .chart");
   if (!gridElement) {
