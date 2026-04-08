@@ -38,8 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const uploadInput = document.getElementById("imageUpload");
   const generateBtn = document.getElementById("generateBtn");
   const paletteButtons = document.querySelectorAll(".palette-btn");
-  const downloadBtn = document.getElementById("downloadBtn"); if (downloadBtn) downloadBtn.disabled = false; 
-downloadBtn?.addEventListener("click", downloadPattern);
+  const downloadBtn = document.getElementById("downloadBtn"); 
+
+    downloadBtn.disabled = true;
+    downloadBtn.addEventListener("click", downloadPattern);
 
   uploadInput?.addEventListener("change", handleImageUpload);
   generateBtn?.addEventListener("click", generatePattern);
