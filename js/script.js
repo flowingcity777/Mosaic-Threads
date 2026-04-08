@@ -40,8 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const paletteButtons = document.querySelectorAll(".palette-btn");
   const downloadBtn = document.getElementById("downloadBtn"); 
 
+  if (downloadBtn) {
     downloadBtn.disabled = true;
     downloadBtn.addEventListener("click", downloadPattern);
+  }
 
   uploadInput?.addEventListener("change", handleImageUpload);
   generateBtn?.addEventListener("click", generatePattern);
@@ -317,7 +319,7 @@ function showMessage(message, type = "info") {
 function downloadPattern() {  
   const gridElement = 
 document.querySelector("#patternGrid .chart");
-  console.log(gridElement);
+  console.log(gridElement):
   
   if (!gridElement) {
     showMessage("Generate a pattern first.", "error");
