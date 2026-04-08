@@ -8,13 +8,15 @@
 </head>
 <body>
   <main class="container">
-    <h1>Mosaic Threads</h1>
-    <p>Transform any image into a customizable knitting pattern.</p>
+    <section class="hero card">
+      <h1>Mosaic Threads</h1>
+      <p>Transform personal images into simplified knitting patterns with yarn-inspired color palettes.</p>
+    </section>
 
     <section class="card">
       <h2>Upload an Image</h2>
-      <input type="file" id="imageUpload" accept="image/png,image/jpeg,image/gif" />
-      <p class="helper">Supported: JPG, PNG, GIF</p>
+      <input type="file" id="imageUpload" accept="image/png,image/jpeg,image/jpg,image/gif" />
+      <p class="helper">Supported formats: JPG, PNG, GIF</p>
       <div id="imagePreview" class="image-preview"></div>
     </section>
 
@@ -33,13 +35,14 @@
 
       <label for="stitchesPerInch">Stitches per Inch</label>
       <input type="number" id="stitchesPerInch" min="2" max="12" step="0.5" value="5" />
-   
+
       <label for="gridWidth">Pattern Width (stitches)</label>
-      <input type="number" id="gridWidth" min"10" max="120" step="2" value="40" />
-     </section>
-    
+      <input type="number" id="gridWidth" min="10" max="120" step="2" value="40" />
+      <p class="helper">Higher numbers create more detail. Lower numbers create simpler patterns.</p>
+    </section>
+
     <section class="card">
-      <h2>Color Palettes</h2>
+      <h2>Choose a Color Palette</h2>
       <div class="palette-list">
         <button type="button" class="palette-btn active" data-palette="rose">Rose Garden</button>
         <button type="button" class="palette-btn" data-palette="earth">Earthbound Harmony</button>
@@ -50,14 +53,21 @@
     </section>
 
     <section class="card">
-      <button id="generateBtn">Generate Pattern</button>
-      <button id="downloadBtn" disabled>Download Pattern</button>
+      <h2>Generate Your Pattern</h2>
+      <div class="action-group">
+        <button id="generateBtn" type="button">Generate Pattern</button>
+        <button id="downloadBtn" type="button" disabled>Download Pattern</button>
+      </div>
       <div id="statusMessage" class="status-message" style="display:none;"></div>
     </section>
 
     <section class="card">
       <h2>Your Knitting Pattern</h2>
       <div id="patternGrid"></div>
+    </section>
+
+    <section class="card">
+      <h2>Instructions</h2>
       <div id="writtenInstructions"></div>
     </section>
   </main>
