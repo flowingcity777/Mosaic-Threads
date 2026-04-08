@@ -56,16 +56,16 @@ Experiment without manual charting.
 
 ## 📸 Screenshots
 ### Upload & Preview
-![Upload Preview](assets/1.png)
+![Upload Preview](assets/screenshots/upload.png)
 
 ### Pattern Generation
-![Generated Pattern](assets/2.png)
+![Generated Pattern](assets/screenshots/pattern.png)
 
 ### Before vs After (Simplification)
-![Before After](assets/3.png)
+![Before After](assets/screenshots/before-after.png)
 
 ### Downloaded Pattern Output
-![Download Output](assets/4.png)
+![Download Output](assets/screenshots/download.png)
 
 ## **🔧 Future Improvements**
 PDF export with full instructions <br>
