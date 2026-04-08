@@ -212,7 +212,7 @@ function renderPattern(grid) {
   if (!patternGrid || !grid.length) return;
 
   const cols = grid[0].length;
-  let html = `<div class="chart" style="display:grid;grid-template-columns:repeat(${cols}, 18px);gap:1px;">`;
+  let html = `<div class="chart" style="display:grid;grid-template-columns:repeat(${cols}, 14px);gap:1px;">`;
 
   for (const row of grid) {
     for (const cell of row) {
