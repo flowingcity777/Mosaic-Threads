@@ -1,6 +1,6 @@
 # 🧵 Mosaic Threads
-## Transform personal images into simplified knitting patterns
-## Mosaic Threads is a web-based tool that converts uploaded images into knittable color grid patterns using curated yarn-inspired palettes.
+### Transform personal images into simplified knitting patterns
+### Mosaic Threads is a web-based tool that converts uploaded images into knittable color grid patterns using curated yarn-inspired palettes.
 
 ## **✨ Features**
 **🖼️ Image Upload**
@@ -30,29 +30,36 @@ Export your pattern as an image for offline use
 Upload Image → Choose Palette → Adjust Size → Generate Pattern → Download
 
 ## **🧠 Design Philosophy**
-✅ Custom Color Matching – Adapts images to yarn colors. <br>
-✅ Adjustable Grid – Visualize stitches clearly. <br>
-✅ Written Instructions – Row-by-row stitch counts. <br>
-✅ Mobile-Friendly – Works on phones and tablets. <br>
+Knitting is not pixel-perfect — it’s constraint-driven.<br>
 
-#### Tips for Best Results
-Use high-contrast images for clearer patterns.
+This tool prioritizes:<br>
 
-For complex designs, increase grid size (e.g., 10x10 stitches per block).
+Simplicity over visual accuracy <br>
+Limited colors over full-spectrum images <br>
+Usability over perfection <br>
 
-Test swatches with scrap yarn to check sizing.
+A good knitting pattern is one you can actually follow.
 
-#### Why Use This Tool?
-Personalize gifts (pet portraits, family photos).
+## **Tips for Best Results**
+HTML5 <br>
+CSS3 <br> 
+JavaScript (Vanilla) <br> 
+Canvas API (image processing) <br> 
 
-Recreate artwork in stitch form.
-
+## **📸 Example Workflow**
+Upload a photo (portrait, object, etc.) <br>
+Select a color palette (e.g., Rose, Ocean, Forest) <br> 
+Choose pattern width (e.g., 40 stitches) <br> 
+Generate pattern <br> 
+Download and knit <br> 
 Experiment without manual charting.
 
-#### Need Help?
-Troubleshooting: Ensure JavaScript is enabled in your browser.
-
-Feedback: Share pattern results with us!
+## **🔧 Future Improvements**
+PDF export with full instructions <br>
+Real yarn brand palettes <br> 
+Adjustable smoothing levels
+Pattern types (blanket, sweater sizing)
+Save and share patterns
 
 #### **Live Page**
 **https://flowingcity777.github.io/Mosaic-Threads/**
