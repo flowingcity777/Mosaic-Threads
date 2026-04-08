@@ -1,51 +1,35 @@
-# Knitting Pattern Generator 🧶✨
-## Transform any image into a customizable knitting pattern!
-## Perfect for knitters who want to create unique projects from photos, artwork, or designs.
+# 🧵 Mosaic Threads
+## Transform personal images into simplified knitting patterns
+## Mosaic Threads is a web-based tool that converts uploaded images into knittable color grid patterns using curated yarn-inspired palettes.
 
-## **How to Use This Site**
-**1. Upload Your Image**
-Click "Upload an Image" to select a photo from your device.
+## **✨ Features**
+**🖼️ Image Upload**
+Upload JPG, PNG, or GIF images directly in the browser
 
-Supported formats: JPG, PNG, GIF.
+**🎨 Yarn-Inspired Color Palettes**
+Convert images into limited, harmonious color sets suitable for knitting
 
-**2. Choose a Yarn Palette**
-Pick from curated color palettes or use your image’s original colors:
-Pick from curated color palettes or use your image’s original colors:
+**🔲 Grid-Based Pattern Generation**
+Automatically transforms images into stitch-by-stitch charts
 
-Rose Garden (Warm pinks/reds)
+**🧶 Pattern Simplification (Smoothing)**
+Reduces noise and creates cleaner, more knit-friendly shapes
 
-Earthbound Harmony (Earthy neutrals)
+**📏 Custom Pattern Size**
+Adjust pattern width (stitches) to control detail level
 
-Morning Prayer (Soft creams/yellows)
+**📋 Knitting Instructions**
+Stitch count and size estimation <br>
+Color usage breakdown <br>
+Row-by-row chart instructions <br>
 
-Ocean Depths (Cool blues/teals)
+**💾 Download as PNG**
+Export your pattern as an image for offline use
 
-Forest Floor (Muted greens)
+## **🚀 How It Works**
+Upload Image → Choose Palette → Adjust Size → Generate Pattern → Download
 
-**3. Adjust Settings**
-Yarn Weight: Select your yarn thickness (Lace to Bulky).
-
-Stitches per Inch: Adjust for desired pattern density.
-
-Grid Size: Toggle stitch visibility and block size.
-
-**4. Generate & Download**
-Click "Generate Pattern" to create your knitting chart.
-
-Download Options:
-
-PNG Image (Visual chart with grid)
-
-#### Example Workflow
-Upload a sunset photo.
-
-Select the "Morning Prayer" palette.
-
-Set stitches to 5 per inch.
-
-Generate → Download the PDF to start knitting!
-
-#### Features
+## **🧠 Design Philosophy**
 ✅ Custom Color Matching – Adapts images to yarn colors. <br>
 ✅ Adjustable Grid – Visualize stitches clearly. <br>
 ✅ Written Instructions – Row-by-row stitch counts. <br>
