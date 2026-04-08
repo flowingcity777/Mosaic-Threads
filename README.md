@@ -54,6 +54,19 @@ Generate pattern <br>
 Download and knit <br> 
 Experiment without manual charting.
 
+## 📸 Screenshots
+### Upload & Preview
+![Upload Preview](assets/screenshots/upload.png)
+
+### Pattern Generation
+![Generated Pattern](assets/screenshots/pattern.png)
+
+### Before vs After (Simplification)
+![Before After](assets/screenshots/before-after.png)
+
+### Downloaded Pattern Output
+![Download Output](assets/screenshots/download.png)
+
 ## **🔧 Future Improvements**
 PDF export with full instructions <br>
 Real yarn brand palettes <br> 
@@ -61,11 +74,26 @@ Adjustable smoothing levels
 Pattern types (blanket, sweater sizing)
 Save and share patterns
 
-#### **Live Page**
-**https://flowingcity777.github.io/Mosaic-Threads/**
+## **🌐 Live Demo**
+**👉 https://flowingcity777.github.io/Mosaic-Threads/**
 
-Happy Knitting! ❤️
+## **📌 Project Status**
+Active prototype — continuously improving functionality and usability.
 
-## 📜 Copyright Notice  
+## **💭 Reflection**
+This project explores how digital tools can translate meaningful images into physical, handmade creations.
+
+It highlights the intersection of:
+
+UX design
+creative tools
+real-world crafting constraints
+
+## **🤝 Contributions**
+Suggestions and feedback are welcome!
+
+## **📄 License**
+MIT License
+
 © [Lydia Li/2025]. All rights reserved.  
 **Unauthorized use, modification, or distribution is prohibited.** 
