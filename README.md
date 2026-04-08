@@ -65,7 +65,7 @@ Experiment without manual charting.
 ![Before After](assets/3.png)
 
 ### Downloaded Pattern Output
-![Download Output](assets/screenshots/download.png)
+![Download Output](assets/4.png)
 
 ## **🔧 Future Improvements**
 PDF export with full instructions <br>
