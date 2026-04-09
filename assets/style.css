@@ -1,23 +1,31 @@
+/* ===== RESET ===== */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* ===== BASE ===== */
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
   background: #f8f6f3;
   color: #2f2a26;
+  line-height: 1.5;
 }
 
+h1, h2, h3, h4 {
+  margin-bottom: 10px;
+}
+
+/* ===== LAYOUT ===== */
 .container {
   width: min(960px, 92%);
   margin: 32px auto;
 }
 
-h1, h2, h3, h4 {
-  margin-top: 0;
-}
+/* ===== COMPONENTS ===== */
 
+/* Cards */
 .card {
   background: #fff;
   border: 1px solid #e7dfd7;
@@ -27,20 +35,14 @@ h1, h2, h3, h4 {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
+/* Inputs */
 label {
   display: block;
   margin: 12px 0 6px;
   font-weight: 600;
 }
 
-input[type="file"],
-input[type="number"],
-select,
-button {
-  font: inherit;
-}
-
-input[type="number"],
+input,
 select {
   width: 100%;
   max-width: 280px;
@@ -48,20 +50,38 @@ select {
   border: 1px solid #d6cec6;
   border-radius: 10px;
   background: #fff;
+  font: inherit;
 }
 
+/* Buttons */
 button {
   cursor: pointer;
   border: 1px solid #d6cec6;
   background: #fff;
   border-radius: 999px;
   padding: 10px 16px;
+  font: inherit;
+  transition: 0.15s ease;
 }
 
 button:hover {
   transform: translateY(-1px);
 }
 
+#generateBtn {
+  background: #2f2a26;
+  color: #fff;
+  border-color: #2f2a26;
+}
+
+/* Button group */
+.action-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Palette */
 .palette-list {
   display: flex;
   flex-wrap: wrap;
@@ -74,25 +94,36 @@ button:hover {
   font-weight: 700;
 }
 
-#generateBtn {
-  background: #2f2a26;
-  color: #fff;
-  border-color: #2f2a26;
-}
-
+/* Image preview */
 .image-preview {
   margin-top: 12px;
 }
 
+.image-preview img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+/* Pattern grid */
 #patternGrid {
   margin-top: 12px;
   overflow-x: auto;
 }
 
+/* Instructions */
 #writtenInstructions {
   margin-top: 18px;
 }
 
+/* Status message */
+.status-message {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+/* Helper text */
 .helper {
   color: #6b625b;
+  font-size: 14px;
 }
