@@ -64,6 +64,11 @@ button {
   transition: 0.15s ease;
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 button:hover {
   transform: translateY(-1px);
 }
