@@ -71,45 +71,45 @@ Experiment without manual charting.
 ### Phase 1 — Core Pattern Generation (Current)
 #### Goal: Validate the core idea and usability
 
-Image upload and preview
-Color palette mapping (yarn-inspired palettes)
-Grid-based pattern generation
-Smoothing for readability
-Row-by-row instructions
-PNG export
+Image upload and preview <br>
+Color palette mapping (yarn-inspired palettes) <br>
+Grid-based pattern generation <br>
+Smoothing for readability <br>
+Row-by-row instructions <br>
+PNG export <br>
 
 ✅ Status: Completed (MVP)
 
 ### 🧶 Phase 2 — Knitting Utility (Next Focus)
 #### Goal: Help users actually use the pattern in real projects
 
-Motif Placement
-Place generated pattern onto:
-sweater front panel
-blanket layout
-Center and alignment controls
-Pattern Scaling
-Adjust pattern to fit specific dimensions
-Maintain proportions based on stitch count
-Repeat & Layout Options
-Repeat pattern across rows/columns
-Create tiled designs
+Motif Placement <br>
+Place generated pattern onto: <br>
+sweater front panel <br>
+blanket layout <br>
+Center and alignment controls <br>
+Pattern Scaling <br>
+Adjust pattern to fit specific dimensions <br>
+Maintain proportions based on stitch count <br>
+Repeat & Layout Options <br>
+Repeat pattern across rows/columns <br>
+Create tiled designs <br>
 
 ### 🧩 Phase 3 — Advanced Pattern Experience
 #### Goal: Improve flexibility and control
 
-Adjustable smoothing levels
-Manual color adjustments
-Custom palette creation
-Stitch density previews
+Adjustable smoothing levels <br>
+Manual color adjustments <br>
+Custom palette creation <br>
+Stitch density previews <br>
 
 ### ☁️ Phase 4 — Accounts & Storage (Future)
 #### Goal: Turn the tool into a full product ecosystem
 
-User accounts
-Save and manage patterns
-Cloud storage
-Pattern history
+User accounts <br>
+Save and manage patterns <br>
+Cloud storage <br>
+Pattern history <br>
 
 ## **🌐 Live Demo**
 **👉 https://flowingcity777.github.io/Mosaic-Threads/**
