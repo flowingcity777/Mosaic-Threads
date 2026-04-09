@@ -69,7 +69,7 @@ Experiment without manual charting.
 
 ## **🚀 Product Roadmap**
 ### Phase 1 — Core Pattern Generation (Current)
-Goal: Validate the core idea and usability
+#### Goal: Validate the core idea and usability
 
 Image upload and preview
 Color palette mapping (yarn-inspired palettes)
@@ -79,6 +79,37 @@ Row-by-row instructions
 PNG export
 
 ✅ Status: Completed (MVP)
+
+### 🧶 Phase 2 — Knitting Utility (Next Focus)
+#### Goal: Help users actually use the pattern in real projects
+
+Motif Placement
+Place generated pattern onto:
+sweater front panel
+blanket layout
+Center and alignment controls
+Pattern Scaling
+Adjust pattern to fit specific dimensions
+Maintain proportions based on stitch count
+Repeat & Layout Options
+Repeat pattern across rows/columns
+Create tiled designs
+
+### 🧩 Phase 3 — Advanced Pattern Experience
+#### Goal: Improve flexibility and control
+
+Adjustable smoothing levels
+Manual color adjustments
+Custom palette creation
+Stitch density previews
+
+### ☁️ Phase 4 — Accounts & Storage (Future)
+#### Goal: Turn the tool into a full product ecosystem
+
+User accounts
+Save and manage patterns
+Cloud storage
+Pattern history
 
 ## **🌐 Live Demo**
 **👉 https://flowingcity777.github.io/Mosaic-Threads/**
