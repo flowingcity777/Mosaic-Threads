@@ -67,12 +67,18 @@ Experiment without manual charting.
 ### Downloaded Pattern Output
 ![Download Output](assets/screenshots/download.png)
 
-## **🔧 Future Improvements**
-PDF export with full instructions <br>
-Real yarn brand palettes <br> 
-Adjustable smoothing levels
-Pattern types (blanket, sweater sizing)
-Save and share patterns
+## **🚀 Product Roadmap**
+### Phase 1 — Core Pattern Generation (Current)
+Goal: Validate the core idea and usability
+
+Image upload and preview
+Color palette mapping (yarn-inspired palettes)
+Grid-based pattern generation
+Smoothing for readability
+Row-by-row instructions
+PNG export
+
+✅ Status: Completed (MVP)
 
 ## **🌐 Live Demo**
 **👉 https://flowingcity777.github.io/Mosaic-Threads/**
