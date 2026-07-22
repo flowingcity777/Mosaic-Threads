@@ -112,7 +112,7 @@ Cloud storage <br>
 Pattern history <br>
 
 ## **🌐 Live Demo**
-**👉 https://flowingcity777.github.io/Mosaic-Threads/**
+**👉 https://flowingcity777.github.io/mosaic-threads/**
 
 ## **📌 Project Status**
 Active prototype — continuously improving functionality and usability.
